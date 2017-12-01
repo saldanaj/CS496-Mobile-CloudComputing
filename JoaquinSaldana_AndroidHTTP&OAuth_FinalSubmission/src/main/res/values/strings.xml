@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidHTTP&amp;OAuth</string>
+    <string name="link1">Post To G+</string>
+    <string name="link2">View G+ Posts</string>
+    <string name="message">Enter Message To Post To G+</string>
+    <string name="send">Submit To G+</string>
+    <string name="getPosts">Get Recent Posts</string>
+</resources>
