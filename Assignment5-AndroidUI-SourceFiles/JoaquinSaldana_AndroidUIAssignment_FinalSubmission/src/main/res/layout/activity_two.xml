@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jq.assignment4_androidui.activityTwo">
+
+
+    <TextView
+        android:id="@+id/addTextVert"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/addStringBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:hint="@string/addStringBox"/>
+
+    <Button
+        android:id="@+id/addString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/addString"/>
+
+    <Button
+        android:id="@+id/btnClose2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/close" />
+
+</LinearLayout>

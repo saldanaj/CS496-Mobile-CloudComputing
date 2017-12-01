@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">JoaquinSaldana_Assignment5_AndroidUI</string>
+    <string name="main_link1">Linear Layout Horizontal</string>
+    <string name="main_link2">Linear Layout Vertical</string>
+    <string name="main_link3">Relative Layout</string>
+    <string name="main_link4">Grid Layout</string>
+    <string name="main_link5">Activity 5</string>
+    <string name="addNum_1">Add Number Here</string>
+    <string name="changeNumber_btn">Change Number</string>
+    <string name="addStringBox">Enter a Word/String</string>
+    <string name="addString">Add String</string>
+    <string name="close">Close</string>
+
+
+    <string-array name="integer_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+
+</resources>
