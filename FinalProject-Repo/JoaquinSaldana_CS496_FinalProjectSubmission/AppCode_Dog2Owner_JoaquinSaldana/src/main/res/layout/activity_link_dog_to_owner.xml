@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jq.app_code.linkDogToOwner">
+
+    <TextView
+        android:id="@+id/humanTxtViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="125dp"
+        android:text="Select Human/Owner:" />
+
+    <TextView
+        android:id="@+id/dogTxtViewSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/humanTxtViewTitle"
+        android:layout_alignStart="@+id/humanTxtViewTitle"
+        android:layout_below="@+id/humanTxtViewTitle"
+        android:layout_marginTop="80dp"
+        android:text="Select Dog:" />
+
+    <TextView
+        android:id="@+id/linkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Link Dog To Owner" />
+
+    <Spinner
+        android:id="@+id/ownerSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/humanTxtViewTitle"
+        android:layout_toEndOf="@+id/linkTitle"
+        android:layout_toRightOf="@+id/linkTitle" />
+
+    <Spinner
+        android:id="@+id/dogSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dogTxtViewSelection"
+        android:layout_alignLeft="@+id/ownerSpinner"
+        android:layout_alignStart="@+id/ownerSpinner" />
+
+    <Button
+        android:id="@+id/submitLinkInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dogTxtViewSelection"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/dogTxtViewSelection"
+        android:layout_marginBottom="83dp"
+        android:text="Submit Link" />
+
+    <Button
+        android:id="@+id/goBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/submitLinkInfo"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp"
+        android:layout_toEndOf="@+id/humanTxtViewTitle"
+        android:layout_toRightOf="@+id/humanTxtViewTitle"
+        android:text="Go Back" />
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jq.app_code.modifyDogInfo">
+
+
+    <EditText
+        android:id="@+id/dogNameInput"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/dogAgeInput"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:layout_below="@+id/dogNameInput"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/dogBreedInput"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:layout_below="@+id/dogAgeInput"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/submitDogInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Submit Dog Info" />
+
+    <CheckBox
+        android:id="@+id/aliveCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dogBreedInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="Alive"
+        android:onClick="onCheckBoxClicked"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Joaquin Saldana Final Project</string>
+    <string name="get_humans_list">Dog Owners List</string>
+    <string name="get_dogs_list">Dogs List</string>
+    <string name="getList">View List</string>
+    <string name="entityName">Name: </string>
+    <string name="entityAge">Age: </string>
+    <string name="entityBreed">Breed: </string>
+    <string name="entityOwner">Owner: </string>
+    <string name="entityAlive">Alive: </string>
+    <string name="entityFavDogPark">Favorite Park: </string>
+</resources>
