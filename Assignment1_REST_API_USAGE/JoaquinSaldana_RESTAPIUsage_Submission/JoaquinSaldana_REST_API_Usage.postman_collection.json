@@ -1,0 +1,792 @@
+{
+	"variables": [],
+	"info": {
+		"name": "JoaquinSaldana_REST_API_Usage",
+		"_postman_id": "e1c22e79-c97a-8ed1-4eab-ef20dd2e73e0",
+		"description": "This is the collection that runs a series of tests on the GitHub Gist API.  It checks for the following: \n\n1. Getting public Gists Returns 30 Gists (or more)\n2. Confirm that user \"wolfordj\" has at least one public Gist \n3. Confirm that hen you create a Gist the number of Gists associated to your account increases by 1 \n4. Confirm that the contents f the Gist you created match the contents you sent \n5. Confirm that you re able to edit the contents of a Gist \n6. Confirm that you can add a star to a Gist \n7. Confirm that your list of Starred gists is incorrect \n8. Confirm you can remove a star from a Gist \n9. Confrim you can delete a Gist ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Get 30 Public Gists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"Joaquin Saldana ",
+							"CS496 - REST API Usage ",
+							"*/ ",
+							"",
+							"function equals30(num)",
+							"{",
+							"    if (num >= 30)",
+							"    {",
+							"        return true; ",
+							"    }",
+							"    ",
+							"    return false; ",
+							"}",
+							"",
+							"var responseLength = JSON.parse(responseBody).length; ",
+							"tests[\"Has 30 or more replies\"] = equals30(responseLength); ",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/gists/public",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Per the GitHub API,made a call requesting all of the public listed Gists and ensure the API call returns at least 30 results \n\nhttps://developer.github.com/v3/gists/#list-all-public-gists\n\n"
+			},
+			"response": [
+				{
+					"id": "1a1a8026-f8ab-4054-b4ed-acf75abff2f5",
+					"name": "1. Getting Public Gists - Response",
+					"originalRequest": {
+						"url": "https://api.github.com/gists/public",
+						"method": "GET",
+						"header": [],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+							"name": "Access-Control-Expose-Headers",
+							"description": "Lets a server whitelist headers that browsers are allowed to access."
+						},
+						{
+							"key": "Cache-Control",
+							"value": "public, max-age=60, s-maxage=60",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'none'",
+							"name": "Content-Security-Policy",
+							"description": "Custom header"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 30 Sep 2017 21:26:55 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a209f6f56660bfb0c83a04f17829266\"",
+							"name": "ETag",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"key": "Link",
+							"value": "<https://api.github.com/gists/public?page=2>; rel=\"next\", <https://api.github.com/gists/public?page=100>; rel=\"last\"",
+							"name": "Link",
+							"description": "Used to express a typed relationship with another resource, where the relation type is defined by RFC 5988"
+						},
+						{
+							"key": "Server",
+							"value": "GitHub.com",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK",
+							"name": "Status",
+							"description": "Custom header"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains; preload",
+							"name": "Strict-Transport-Security",
+							"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Accept",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "deny",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-GitHub-Media-Type",
+							"value": "github.v3; format=json",
+							"name": "X-GitHub-Media-Type",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-GitHub-Request-Id",
+							"value": "DC7A:4528:1BCF494:381753E:59D00C1F",
+							"name": "X-GitHub-Request-Id",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60",
+							"name": "X-RateLimit-Limit",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57",
+							"name": "X-RateLimit-Remaining",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1506810003",
+							"name": "X-RateLimit-Reset",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-Runtime-rack",
+							"value": "0.173452",
+							"name": "X-Runtime-rack",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Mon Jan 18 2038 22:14:07 GMT-0500 (EST)",
+							"httpOnly": true,
+							"domain": "github.com",
+							"path": "/",
+							"secure": true,
+							"value": "eyJzZXNzaW9uX2lkIjoiYmY2NmY1MjIxNmY2YTAxNzRlYjllN2E5YmNkNTEwZGIiLCJsYXN0X3JlYWRfZnJvbV9yZXBsaWNhcyI6MTUwNjgwNjgwODU4MX0%3D--27a9ffa1b3941de40c53777e01540e9b7773fa06",
+							"key": "_gh_sess"
+						}
+					],
+					"responseTime": 484,
+					"body": "[{\"url\":\"https://api.github.com/gists/5fd8b01a58b2dcc43c18b757c9f97638\",\"forks_url\":\"https://api.github.com/gists/5fd8b01a58b2dcc43c18b757c9f97638/forks\",\"commits_url\":\"https://api.github.com/gists/5fd8b01a58b2dcc43c18b757c9f97638/commits\",\"id\":\"5fd8b01a58b2dcc43c18b757c9f97638\",\"git_pull_url\":\"https://gist.github.com/5fd8b01a58b2dcc43c18b757c9f97638.git\",\"git_push_url\":\"https://gist.github.com/5fd8b01a58b2dcc43c18b757c9f97638.git\",\"html_url\":\"https://gist.github.com/5fd8b01a58b2dcc43c18b757c9f97638\",\"files\":{\"config.json\":{\"filename\":\"config.json\",\"type\":\"application/json\",\"language\":\"JSON\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/5fd8b01a58b2dcc43c18b757c9f97638/raw/9bce0909889d090610d083aedcd434a7e54cb305/config.json\",\"size\":17720}},\"public\":true,\"created_at\":\"2017-09-30T21:26:51Z\",\"updated_at\":\"2017-09-30T21:26:51Z\",\"description\":\"Bootstrap Customizer Config\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/5fd8b01a58b2dcc43c18b757c9f97638/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/ab51ef99652315cd61463adec39b4c85\",\"forks_url\":\"https://api.github.com/gists/ab51ef99652315cd61463adec39b4c85/forks\",\"commits_url\":\"https://api.github.com/gists/ab51ef99652315cd61463adec39b4c85/commits\",\"id\":\"ab51ef99652315cd61463adec39b4c85\",\"git_pull_url\":\"https://gist.github.com/ab51ef99652315cd61463adec39b4c85.git\",\"git_push_url\":\"https://gist.github.com/ab51ef99652315cd61463adec39b4c85.git\",\"html_url\":\"https://gist.github.com/ab51ef99652315cd61463adec39b4c85\",\"files\":{\"ICM HW4 Draw Fish Function\":{\"filename\":\"ICM HW4 Draw Fish Function\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/bevchou/ab51ef99652315cd61463adec39b4c85/raw/11fce703841dbed322567baae382dc221ed5b764/ICM%20HW4%20Draw%20Fish%20Function\",\"size\":219}},\"public\":true,\"created_at\":\"2017-09-30T21:26:45Z\",\"updated_at\":\"2017-09-30T21:26:45Z\",\"description\":\"\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/ab51ef99652315cd61463adec39b4c85/comments\",\"owner\":{\"login\":\"bevchou\",\"id\":31548243,\"avatar_url\":\"https://avatars2.githubusercontent.com/u/31548243?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/bevchou\",\"html_url\":\"https://github.com/bevchou\",\"followers_url\":\"https://api.github.com/users/bevchou/followers\",\"following_url\":\"https://api.github.com/users/bevchou/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/bevchou/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/bevchou/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/bevchou/subscriptions\",\"organizations_url\":\"https://api.github.com/users/bevchou/orgs\",\"repos_url\":\"https://api.github.com/users/bevchou/repos\",\"events_url\":\"https://api.github.com/users/bevchou/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/bevchou/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/990edc341972d2e10f73960e024aaab5\",\"forks_url\":\"https://api.github.com/gists/990edc341972d2e10f73960e024aaab5/forks\",\"commits_url\":\"https://api.github.com/gists/990edc341972d2e10f73960e024aaab5/commits\",\"id\":\"990edc341972d2e10f73960e024aaab5\",\"git_pull_url\":\"https://gist.github.com/990edc341972d2e10f73960e024aaab5.git\",\"git_push_url\":\"https://gist.github.com/990edc341972d2e10f73960e024aaab5.git\",\"html_url\":\"https://gist.github.com/990edc341972d2e10f73960e024aaab5\",\"files\":{\"traverseWrapForDev.js\":{\"filename\":\"traverseWrapForDev.js\",\"type\":\"application/javascript\",\"language\":\"JavaScript\",\"raw_url\":\"https://gist.githubusercontent.com/rohozhnikoff/990edc341972d2e10f73960e024aaab5/raw/024e4afad04d0b6bddbc75febf9117ba525b2e33/traverseWrapForDev.js\",\"size\":256}},\"public\":true,\"created_at\":\"2017-09-30T21:26:38Z\",\"updated_at\":\"2017-09-30T21:26:38Z\",\"description\":\"\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/990edc341972d2e10f73960e024aaab5/comments\",\"owner\":{\"login\":\"rohozhnikoff\",\"id\":1474534,\"avatar_url\":\"https://avatars3.githubusercontent.com/u/1474534?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/rohozhnikoff\",\"html_url\":\"https://github.com/rohozhnikoff\",\"followers_url\":\"https://api.github.com/users/rohozhnikoff/followers\",\"following_url\":\"https://api.github.com/users/rohozhnikoff/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/rohozhnikoff/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/rohozhnikoff/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/rohozhnikoff/subscriptions\",\"organizations_url\":\"https://api.github.com/users/rohozhnikoff/orgs\",\"repos_url\":\"https://api.github.com/users/rohozhnikoff/repos\",\"events_url\":\"https://api.github.com/users/rohozhnikoff/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/rohozhnikoff/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/60f048c0d3869b5bf43795055e3c8d9e\",\"forks_url\":\"https://api.github.com/gists/60f048c0d3869b5bf43795055e3c8d9e/forks\",\"commits_url\":\"https://api.github.com/gists/60f048c0d3869b5bf43795055e3c8d9e/commits\",\"id\":\"60f048c0d3869b5bf43795055e3c8d9e\",\"git_pull_url\":\"https://gist.github.com/60f048c0d3869b5bf43795055e3c8d9e.git\",\"git_push_url\":\"https://gist.github.com/60f048c0d3869b5bf43795055e3c8d9e.git\",\"html_url\":\"https://gist.github.com/60f048c0d3869b5bf43795055e3c8d9e\",\"files\":{\"error\":{\"filename\":\"error\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/anonymous/60f048c0d3869b5bf43795055e3c8d9e/raw/e6625f74066ecbd59ee42b4c67509498ce9b1f62/error\",\"size\":1658}},\"public\":true,\"created_at\":\"2017-09-30T21:26:07Z\",\"updated_at\":\"2017-09-30T21:26:07Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/60f048c0d3869b5bf43795055e3c8d9e/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/eb699461fd62156ef16c27e9bc136d7c\",\"forks_url\":\"https://api.github.com/gists/eb699461fd62156ef16c27e9bc136d7c/forks\",\"commits_url\":\"https://api.github.com/gists/eb699461fd62156ef16c27e9bc136d7c/commits\",\"id\":\"eb699461fd62156ef16c27e9bc136d7c\",\"git_pull_url\":\"https://gist.github.com/eb699461fd62156ef16c27e9bc136d7c.git\",\"git_push_url\":\"https://gist.github.com/eb699461fd62156ef16c27e9bc136d7c.git\",\"html_url\":\"https://gist.github.com/eb699461fd62156ef16c27e9bc136d7c\",\"files\":{\"gistfile1.js\":{\"filename\":\"gistfile1.js\",\"type\":\"application/javascript\",\"language\":\"JavaScript\",\"raw_url\":\"https://gist.githubusercontent.com/Ladone/eb699461fd62156ef16c27e9bc136d7c/raw/e15113fe6ea70cd0dd009b440660656e75356a4b/gistfile1.js\",\"size\":2516}},\"public\":true,\"created_at\":\"2017-09-30T21:26:07Z\",\"updated_at\":\"2017-09-30T21:26:27Z\",\"description\":\"somethig.twig\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/eb699461fd62156ef16c27e9bc136d7c/comments\",\"owner\":{\"login\":\"Ladone\",\"id\":4075937,\"avatar_url\":\"https://avatars1.githubusercontent.com/u/4075937?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/Ladone\",\"html_url\":\"https://github.com/Ladone\",\"followers_url\":\"https://api.github.com/users/Ladone/followers\",\"following_url\":\"https://api.github.com/users/Ladone/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/Ladone/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/Ladone/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/Ladone/subscriptions\",\"organizations_url\":\"https://api.github.com/users/Ladone/orgs\",\"repos_url\":\"https://api.github.com/users/Ladone/repos\",\"events_url\":\"https://api.github.com/users/Ladone/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/Ladone/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/6c6a32e48f89f874f4f0e86228fc3060\",\"forks_url\":\"https://api.github.com/gists/6c6a32e48f89f874f4f0e86228fc3060/forks\",\"commits_url\":\"https://api.github.com/gists/6c6a32e48f89f874f4f0e86228fc3060/commits\",\"id\":\"6c6a32e48f89f874f4f0e86228fc3060\",\"git_pull_url\":\"https://gist.github.com/6c6a32e48f89f874f4f0e86228fc3060.git\",\"git_push_url\":\"https://gist.github.com/6c6a32e48f89f874f4f0e86228fc3060.git\",\"html_url\":\"https://gist.github.com/6c6a32e48f89f874f4f0e86228fc3060\",\"files\":{\"brlog.trunk-test.20171001-062409\":{\"filename\":\"brlog.trunk-test.20171001-062409\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/ko1/6c6a32e48f89f874f4f0e86228fc3060/raw/465019f8ebc715a84e489124aef21168cf9733eb/brlog.trunk-test.20171001-062409\",\"size\":84004}},\"public\":true,\"created_at\":\"2017-09-30T21:26:03Z\",\"updated_at\":\"2017-09-30T21:26:03Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/6c6a32e48f89f874f4f0e86228fc3060/comments\",\"owner\":{\"login\":\"ko1\",\"id\":9558,\"avatar_url\":\"https://avatars3.githubusercontent.com/u/9558?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/ko1\",\"html_url\":\"https://github.com/ko1\",\"followers_url\":\"https://api.github.com/users/ko1/followers\",\"following_url\":\"https://api.github.com/users/ko1/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/ko1/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/ko1/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/ko1/subscriptions\",\"organizations_url\":\"https://api.github.com/users/ko1/orgs\",\"repos_url\":\"https://api.github.com/users/ko1/repos\",\"events_url\":\"https://api.github.com/users/ko1/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/ko1/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/0002f435b60c457574965c533d8389af\",\"forks_url\":\"https://api.github.com/gists/0002f435b60c457574965c533d8389af/forks\",\"commits_url\":\"https://api.github.com/gists/0002f435b60c457574965c533d8389af/commits\",\"id\":\"0002f435b60c457574965c533d8389af\",\"git_pull_url\":\"https://gist.github.com/0002f435b60c457574965c533d8389af.git\",\"git_push_url\":\"https://gist.github.com/0002f435b60c457574965c533d8389af.git\",\"html_url\":\"https://gist.github.com/0002f435b60c457574965c533d8389af\",\"files\":{\"image_file_scaler.py\":{\"filename\":\"image_file_scaler.py\",\"type\":\"application/x-python\",\"language\":\"Python\",\"raw_url\":\"https://gist.githubusercontent.com/LucasCTN/0002f435b60c457574965c533d8389af/raw/92763f122bc38a4cfd7897078cf2c0efa514a760/image_file_scaler.py\",\"size\":3010}},\"public\":true,\"created_at\":\"2017-09-30T21:25:47Z\",\"updated_at\":\"2017-09-30T21:25:48Z\",\"description\":\"Python script that downloads an image, and keeps scaling it down with a Binary Search-like algorithm until it has an determined file size.\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/0002f435b60c457574965c533d8389af/comments\",\"owner\":{\"login\":\"LucasCTN\",\"id\":16941916,\"avatar_url\":\"https://avatars2.githubusercontent.com/u/16941916?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/LucasCTN\",\"html_url\":\"https://github.com/LucasCTN\",\"followers_url\":\"https://api.github.com/users/LucasCTN/followers\",\"following_url\":\"https://api.github.com/users/LucasCTN/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/LucasCTN/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/LucasCTN/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/LucasCTN/subscriptions\",\"organizations_url\":\"https://api.github.com/users/LucasCTN/orgs\",\"repos_url\":\"https://api.github.com/users/LucasCTN/repos\",\"events_url\":\"https://api.github.com/users/LucasCTN/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/LucasCTN/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/0f07c1957d2fd21973edc26041c0a4f8\",\"forks_url\":\"https://api.github.com/gists/0f07c1957d2fd21973edc26041c0a4f8/forks\",\"commits_url\":\"https://api.github.com/gists/0f07c1957d2fd21973edc26041c0a4f8/commits\",\"id\":\"0f07c1957d2fd21973edc26041c0a4f8\",\"git_pull_url\":\"https://gist.github.com/0f07c1957d2fd21973edc26041c0a4f8.git\",\"git_push_url\":\"https://gist.github.com/0f07c1957d2fd21973edc26041c0a4f8.git\",\"html_url\":\"https://gist.github.com/0f07c1957d2fd21973edc26041c0a4f8\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/0f07c1957d2fd21973edc26041c0a4f8/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:46Z\",\"updated_at\":\"2017-09-30T21:25:46Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/0f07c1957d2fd21973edc26041c0a4f8/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/3d57715cc77b58b1c3af5673b30f7d18\",\"forks_url\":\"https://api.github.com/gists/3d57715cc77b58b1c3af5673b30f7d18/forks\",\"commits_url\":\"https://api.github.com/gists/3d57715cc77b58b1c3af5673b30f7d18/commits\",\"id\":\"3d57715cc77b58b1c3af5673b30f7d18\",\"git_pull_url\":\"https://gist.github.com/3d57715cc77b58b1c3af5673b30f7d18.git\",\"git_push_url\":\"https://gist.github.com/3d57715cc77b58b1c3af5673b30f7d18.git\",\"html_url\":\"https://gist.github.com/3d57715cc77b58b1c3af5673b30f7d18\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/3d57715cc77b58b1c3af5673b30f7d18/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:44Z\",\"updated_at\":\"2017-09-30T21:25:44Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/3d57715cc77b58b1c3af5673b30f7d18/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/8354226725966c13d5aac0a705a1f274\",\"forks_url\":\"https://api.github.com/gists/8354226725966c13d5aac0a705a1f274/forks\",\"commits_url\":\"https://api.github.com/gists/8354226725966c13d5aac0a705a1f274/commits\",\"id\":\"8354226725966c13d5aac0a705a1f274\",\"git_pull_url\":\"https://gist.github.com/8354226725966c13d5aac0a705a1f274.git\",\"git_push_url\":\"https://gist.github.com/8354226725966c13d5aac0a705a1f274.git\",\"html_url\":\"https://gist.github.com/8354226725966c13d5aac0a705a1f274\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/8354226725966c13d5aac0a705a1f274/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:42Z\",\"updated_at\":\"2017-09-30T21:25:42Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/8354226725966c13d5aac0a705a1f274/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/31ae2c9ce24d16636b77fd2092bb2d4d\",\"forks_url\":\"https://api.github.com/gists/31ae2c9ce24d16636b77fd2092bb2d4d/forks\",\"commits_url\":\"https://api.github.com/gists/31ae2c9ce24d16636b77fd2092bb2d4d/commits\",\"id\":\"31ae2c9ce24d16636b77fd2092bb2d4d\",\"git_pull_url\":\"https://gist.github.com/31ae2c9ce24d16636b77fd2092bb2d4d.git\",\"git_push_url\":\"https://gist.github.com/31ae2c9ce24d16636b77fd2092bb2d4d.git\",\"html_url\":\"https://gist.github.com/31ae2c9ce24d16636b77fd2092bb2d4d\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/31ae2c9ce24d16636b77fd2092bb2d4d/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:39Z\",\"updated_at\":\"2017-09-30T21:25:39Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/31ae2c9ce24d16636b77fd2092bb2d4d/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/86e59e80ab220ed6075f59aa17d728b9\",\"forks_url\":\"https://api.github.com/gists/86e59e80ab220ed6075f59aa17d728b9/forks\",\"commits_url\":\"https://api.github.com/gists/86e59e80ab220ed6075f59aa17d728b9/commits\",\"id\":\"86e59e80ab220ed6075f59aa17d728b9\",\"git_pull_url\":\"https://gist.github.com/86e59e80ab220ed6075f59aa17d728b9.git\",\"git_push_url\":\"https://gist.github.com/86e59e80ab220ed6075f59aa17d728b9.git\",\"html_url\":\"https://gist.github.com/86e59e80ab220ed6075f59aa17d728b9\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/86e59e80ab220ed6075f59aa17d728b9/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:37Z\",\"updated_at\":\"2017-09-30T21:25:37Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/86e59e80ab220ed6075f59aa17d728b9/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/67d6b6633ab6a380bc9b3117d889048a\",\"forks_url\":\"https://api.github.com/gists/67d6b6633ab6a380bc9b3117d889048a/forks\",\"commits_url\":\"https://api.github.com/gists/67d6b6633ab6a380bc9b3117d889048a/commits\",\"id\":\"67d6b6633ab6a380bc9b3117d889048a\",\"git_pull_url\":\"https://gist.github.com/67d6b6633ab6a380bc9b3117d889048a.git\",\"git_push_url\":\"https://gist.github.com/67d6b6633ab6a380bc9b3117d889048a.git\",\"html_url\":\"https://gist.github.com/67d6b6633ab6a380bc9b3117d889048a\",\"files\":{\"brlog.trunk-test.20171001-062333\":{\"filename\":\"brlog.trunk-test.20171001-062333\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/anonymous/67d6b6633ab6a380bc9b3117d889048a/raw/c4cab5f9593d3e0b6121df2564b97bbcc237ac1b/brlog.trunk-test.20171001-062333\",\"size\":46897}},\"public\":true,\"created_at\":\"2017-09-30T21:25:33Z\",\"updated_at\":\"2017-09-30T21:25:33Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/67d6b6633ab6a380bc9b3117d889048a/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/eaf62b416e45b978015f50c96a053874\",\"forks_url\":\"https://api.github.com/gists/eaf62b416e45b978015f50c96a053874/forks\",\"commits_url\":\"https://api.github.com/gists/eaf62b416e45b978015f50c96a053874/commits\",\"id\":\"eaf62b416e45b978015f50c96a053874\",\"git_pull_url\":\"https://gist.github.com/eaf62b416e45b978015f50c96a053874.git\",\"git_push_url\":\"https://gist.github.com/eaf62b416e45b978015f50c96a053874.git\",\"html_url\":\"https://gist.github.com/eaf62b416e45b978015f50c96a053874\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/eaf62b416e45b978015f50c96a053874/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:31Z\",\"updated_at\":\"2017-09-30T21:25:32Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/eaf62b416e45b978015f50c96a053874/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/e06a63875389c67fe3c70d0fb6c3363b\",\"forks_url\":\"https://api.github.com/gists/e06a63875389c67fe3c70d0fb6c3363b/forks\",\"commits_url\":\"https://api.github.com/gists/e06a63875389c67fe3c70d0fb6c3363b/commits\",\"id\":\"e06a63875389c67fe3c70d0fb6c3363b\",\"git_pull_url\":\"https://gist.github.com/e06a63875389c67fe3c70d0fb6c3363b.git\",\"git_push_url\":\"https://gist.github.com/e06a63875389c67fe3c70d0fb6c3363b.git\",\"html_url\":\"https://gist.github.com/e06a63875389c67fe3c70d0fb6c3363b\",\"files\":{\"gistfile1.txt\":{\"filename\":\"gistfile1.txt\",\"type\":\"text/plain\",\"language\":\"Text\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/e06a63875389c67fe3c70d0fb6c3363b/raw/35013a9bfabd7c57b36637381b0c205bd6d93b6a/gistfile1.txt\",\"size\":3000}},\"public\":true,\"created_at\":\"2017-09-30T21:25:30Z\",\"updated_at\":\"2017-09-30T21:25:31Z\",\"description\":\"https://www.pinterest.com/pin/775041417094825031/\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/e06a63875389c67fe3c70d0fb6c3363b/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/c720faa84037815abb3da93f05010f92\",\"forks_url\":\"https://api.github.com/gists/c720faa84037815abb3da93f05010f92/forks\",\"commits_url\":\"https://api.github.com/gists/c720faa84037815abb3da93f05010f92/commits\",\"id\":\"c720faa84037815abb3da93f05010f92\",\"git_pull_url\":\"https://gist.github.com/c720faa84037815abb3da93f05010f92.git\",\"git_push_url\":\"https://gist.github.com/c720faa84037815abb3da93f05010f92.git\",\"html_url\":\"https://gist.github.com/c720faa84037815abb3da93f05010f92\",\"files\":{\"Coupled_Differential_Equations.ipynb\":{\"filename\":\"Coupled_Differential_Equations.ipynb\",\"type\":\"text/plain\",\"language\":\"Jupyter Notebook\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/c720faa84037815abb3da93f05010f92/raw/c2764a191206d289b2a938fe029120d9a7939183/Coupled_Differential_Equations.ipynb\",\"size\":16245}},\"public\":true,\"created_at\":\"2017-09-30T21:25:30Z\",\"updated_at\":\"2017-09-30T21:25:30Z\",\"description\":\"Sympy_simplification_failure.ipynb\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/c720faa84037815abb3da93f05010f92/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/35bc30b6a37fc860bb49ba4b3d18fe7b\",\"forks_url\":\"https://api.github.com/gists/35bc30b6a37fc860bb49ba4b3d18fe7b/forks\",\"commits_url\":\"https://api.github.com/gists/35bc30b6a37fc860bb49ba4b3d18fe7b/commits\",\"id\":\"35bc30b6a37fc860bb49ba4b3d18fe7b\",\"git_pull_url\":\"https://gist.github.com/35bc30b6a37fc860bb49ba4b3d18fe7b.git\",\"git_push_url\":\"https://gist.github.com/35bc30b6a37fc860bb49ba4b3d18fe7b.git\",\"html_url\":\"https://gist.github.com/35bc30b6a37fc860bb49ba4b3d18fe7b\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/35bc30b6a37fc860bb49ba4b3d18fe7b/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:29Z\",\"updated_at\":\"2017-09-30T21:25:29Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/35bc30b6a37fc860bb49ba4b3d18fe7b/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/178fccd1d2fc9075a39a9318633b530b\",\"forks_url\":\"https://api.github.com/gists/178fccd1d2fc9075a39a9318633b530b/forks\",\"commits_url\":\"https://api.github.com/gists/178fccd1d2fc9075a39a9318633b530b/commits\",\"id\":\"178fccd1d2fc9075a39a9318633b530b\",\"git_pull_url\":\"https://gist.github.com/178fccd1d2fc9075a39a9318633b530b.git\",\"git_push_url\":\"https://gist.github.com/178fccd1d2fc9075a39a9318633b530b.git\",\"html_url\":\"https://gist.github.com/178fccd1d2fc9075a39a9318633b530b\",\"files\":{\"Высокий Парень И Низкая Девушка Порно.md\":{\"filename\":\"Высокий Парень И Низкая Девушка Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/178fccd1d2fc9075a39a9318633b530b/raw/2c112dfc8cbf6c1bdfb5369ab4b10f2692fece66/%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B9%20%D0%9F%D0%B0%D1%80%D0%B5%D0%BD%D1%8C%20%D0%98%20%D0%9D%D0%B8%D0%B7%D0%BA%D0%B0%D1%8F%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":697}},\"public\":true,\"created_at\":\"2017-09-30T21:25:27Z\",\"updated_at\":\"2017-09-30T21:25:28Z\",\"description\":\"Высокий Парень И Низкая Девушка Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/178fccd1d2fc9075a39a9318633b530b/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/efe09e7f7c8cc1878a69c9a7bb35383b\",\"forks_url\":\"https://api.github.com/gists/efe09e7f7c8cc1878a69c9a7bb35383b/forks\",\"commits_url\":\"https://api.github.com/gists/efe09e7f7c8cc1878a69c9a7bb35383b/commits\",\"id\":\"efe09e7f7c8cc1878a69c9a7bb35383b\",\"git_pull_url\":\"https://gist.github.com/efe09e7f7c8cc1878a69c9a7bb35383b.git\",\"git_push_url\":\"https://gist.github.com/efe09e7f7c8cc1878a69c9a7bb35383b.git\",\"html_url\":\"https://gist.github.com/efe09e7f7c8cc1878a69c9a7bb35383b\",\"files\":{\"-\":{\"filename\":\"-\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/anonymous/efe09e7f7c8cc1878a69c9a7bb35383b/raw/cef148c6d34b0fb8e0d2eb2658c43015a757b23d/-\",\"size\":2881}},\"public\":true,\"created_at\":\"2017-09-30T21:25:13Z\",\"updated_at\":\"2017-09-30T21:25:14Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/efe09e7f7c8cc1878a69c9a7bb35383b/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/68022a7b73c68f76ec46a937237b7f45\",\"forks_url\":\"https://api.github.com/gists/68022a7b73c68f76ec46a937237b7f45/forks\",\"commits_url\":\"https://api.github.com/gists/68022a7b73c68f76ec46a937237b7f45/commits\",\"id\":\"68022a7b73c68f76ec46a937237b7f45\",\"git_pull_url\":\"https://gist.github.com/68022a7b73c68f76ec46a937237b7f45.git\",\"git_push_url\":\"https://gist.github.com/68022a7b73c68f76ec46a937237b7f45.git\",\"html_url\":\"https://gist.github.com/68022a7b73c68f76ec46a937237b7f45\",\"files\":{\"brlog.trunk-test.20171001-062244\":{\"filename\":\"brlog.trunk-test.20171001-062244\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/ko1/68022a7b73c68f76ec46a937237b7f45/raw/ae201668d50fe77b114e28a36ae819e8de35cac2/brlog.trunk-test.20171001-062244\",\"size\":46848}},\"public\":true,\"created_at\":\"2017-09-30T21:25:06Z\",\"updated_at\":\"2017-09-30T21:25:06Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/68022a7b73c68f76ec46a937237b7f45/comments\",\"owner\":{\"login\":\"ko1\",\"id\":9558,\"avatar_url\":\"https://avatars3.githubusercontent.com/u/9558?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/ko1\",\"html_url\":\"https://github.com/ko1\",\"followers_url\":\"https://api.github.com/users/ko1/followers\",\"following_url\":\"https://api.github.com/users/ko1/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/ko1/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/ko1/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/ko1/subscriptions\",\"organizations_url\":\"https://api.github.com/users/ko1/orgs\",\"repos_url\":\"https://api.github.com/users/ko1/repos\",\"events_url\":\"https://api.github.com/users/ko1/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/ko1/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/47aecc251f28fef743bcfd59eb37727c\",\"forks_url\":\"https://api.github.com/gists/47aecc251f28fef743bcfd59eb37727c/forks\",\"commits_url\":\"https://api.github.com/gists/47aecc251f28fef743bcfd59eb37727c/commits\",\"id\":\"47aecc251f28fef743bcfd59eb37727c\",\"git_pull_url\":\"https://gist.github.com/47aecc251f28fef743bcfd59eb37727c.git\",\"git_push_url\":\"https://gist.github.com/47aecc251f28fef743bcfd59eb37727c.git\",\"html_url\":\"https://gist.github.com/47aecc251f28fef743bcfd59eb37727c\",\"files\":{\"file1.txt\":{\"filename\":\"file1.txt\",\"type\":\"text/plain\",\"language\":\"Text\",\"raw_url\":\"https://gist.githubusercontent.com/apaiz1/47aecc251f28fef743bcfd59eb37727c/raw/ec36e62bc89632742e42fc8f92d0875045a206eb/file1.txt\",\"size\":22}},\"public\":true,\"created_at\":\"2017-09-30T21:25:05Z\",\"updated_at\":\"2017-09-30T21:25:05Z\",\"description\":\"test gist add\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/47aecc251f28fef743bcfd59eb37727c/comments\",\"owner\":{\"login\":\"apaiz1\",\"id\":22428082,\"avatar_url\":\"https://avatars2.githubusercontent.com/u/22428082?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/apaiz1\",\"html_url\":\"https://github.com/apaiz1\",\"followers_url\":\"https://api.github.com/users/apaiz1/followers\",\"following_url\":\"https://api.github.com/users/apaiz1/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/apaiz1/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/apaiz1/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/apaiz1/subscriptions\",\"organizations_url\":\"https://api.github.com/users/apaiz1/orgs\",\"repos_url\":\"https://api.github.com/users/apaiz1/repos\",\"events_url\":\"https://api.github.com/users/apaiz1/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/apaiz1/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/1760c0ff1c5e0dd3467963cb17bc936e\",\"forks_url\":\"https://api.github.com/gists/1760c0ff1c5e0dd3467963cb17bc936e/forks\",\"commits_url\":\"https://api.github.com/gists/1760c0ff1c5e0dd3467963cb17bc936e/commits\",\"id\":\"1760c0ff1c5e0dd3467963cb17bc936e\",\"git_pull_url\":\"https://gist.github.com/1760c0ff1c5e0dd3467963cb17bc936e.git\",\"git_push_url\":\"https://gist.github.com/1760c0ff1c5e0dd3467963cb17bc936e.git\",\"html_url\":\"https://gist.github.com/1760c0ff1c5e0dd3467963cb17bc936e\",\"files\":{\"Молодые Девушки Высокие Порно.md\":{\"filename\":\"Молодые Девушки Высокие Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/1760c0ff1c5e0dd3467963cb17bc936e/raw/908666341b0331ee0215a0584225aabfe2b6c2d9/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%8B%D0%B5%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B8%20%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B5%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":7485}},\"public\":true,\"created_at\":\"2017-09-30T21:25:01Z\",\"updated_at\":\"2017-09-30T21:25:01Z\",\"description\":\"Молодые Девушки Высокие Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/1760c0ff1c5e0dd3467963cb17bc936e/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/1b70a85365ed52684cbe0eb3ea514187\",\"forks_url\":\"https://api.github.com/gists/1b70a85365ed52684cbe0eb3ea514187/forks\",\"commits_url\":\"https://api.github.com/gists/1b70a85365ed52684cbe0eb3ea514187/commits\",\"id\":\"1b70a85365ed52684cbe0eb3ea514187\",\"git_pull_url\":\"https://gist.github.com/1b70a85365ed52684cbe0eb3ea514187.git\",\"git_push_url\":\"https://gist.github.com/1b70a85365ed52684cbe0eb3ea514187.git\",\"html_url\":\"https://gist.github.com/1b70a85365ed52684cbe0eb3ea514187\",\"files\":{\"Молодые Девушки Высокие Порно.md\":{\"filename\":\"Молодые Девушки Высокие Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/1b70a85365ed52684cbe0eb3ea514187/raw/908666341b0331ee0215a0584225aabfe2b6c2d9/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%8B%D0%B5%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B8%20%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B5%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":7485}},\"public\":true,\"created_at\":\"2017-09-30T21:24:59Z\",\"updated_at\":\"2017-09-30T21:24:59Z\",\"description\":\"Молодые Девушки Высокие Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/1b70a85365ed52684cbe0eb3ea514187/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/c13aa93b7ac76f1817498193347b7278\",\"forks_url\":\"https://api.github.com/gists/c13aa93b7ac76f1817498193347b7278/forks\",\"commits_url\":\"https://api.github.com/gists/c13aa93b7ac76f1817498193347b7278/commits\",\"id\":\"c13aa93b7ac76f1817498193347b7278\",\"git_pull_url\":\"https://gist.github.com/c13aa93b7ac76f1817498193347b7278.git\",\"git_push_url\":\"https://gist.github.com/c13aa93b7ac76f1817498193347b7278.git\",\"html_url\":\"https://gist.github.com/c13aa93b7ac76f1817498193347b7278\",\"files\":{\"Молодые Девушки Высокие Порно.md\":{\"filename\":\"Молодые Девушки Высокие Порно.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/c13aa93b7ac76f1817498193347b7278/raw/908666341b0331ee0215a0584225aabfe2b6c2d9/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%8B%D0%B5%20%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B8%20%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B5%20%D0%9F%D0%BE%D1%80%D0%BD%D0%BE.md\",\"size\":7485}},\"public\":true,\"created_at\":\"2017-09-30T21:24:57Z\",\"updated_at\":\"2017-09-30T21:24:58Z\",\"description\":\"Молодые Девушки Высокие Порно\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/c13aa93b7ac76f1817498193347b7278/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/d63955dc48a97bc6d77b5221ba8264e4\",\"forks_url\":\"https://api.github.com/gists/d63955dc48a97bc6d77b5221ba8264e4/forks\",\"commits_url\":\"https://api.github.com/gists/d63955dc48a97bc6d77b5221ba8264e4/commits\",\"id\":\"d63955dc48a97bc6d77b5221ba8264e4\",\"git_pull_url\":\"https://gist.github.com/d63955dc48a97bc6d77b5221ba8264e4.git\",\"git_push_url\":\"https://gist.github.com/d63955dc48a97bc6d77b5221ba8264e4.git\",\"html_url\":\"https://gist.github.com/d63955dc48a97bc6d77b5221ba8264e4\",\"files\":{\"brlog.trunk.20171001-062311\":{\"filename\":\"brlog.trunk.20171001-062311\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/anonymous/d63955dc48a97bc6d77b5221ba8264e4/raw/bba935ca1f721b931664dcdb65b152e042bbe0b1/brlog.trunk.20171001-062311\",\"size\":46997}},\"public\":true,\"created_at\":\"2017-09-30T21:24:55Z\",\"updated_at\":\"2017-09-30T21:24:55Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/d63955dc48a97bc6d77b5221ba8264e4/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/baf27dee82b1baef098bdc45de85deca\",\"forks_url\":\"https://api.github.com/gists/baf27dee82b1baef098bdc45de85deca/forks\",\"commits_url\":\"https://api.github.com/gists/baf27dee82b1baef098bdc45de85deca/commits\",\"id\":\"baf27dee82b1baef098bdc45de85deca\",\"git_pull_url\":\"https://gist.github.com/baf27dee82b1baef098bdc45de85deca.git\",\"git_push_url\":\"https://gist.github.com/baf27dee82b1baef098bdc45de85deca.git\",\"html_url\":\"https://gist.github.com/baf27dee82b1baef098bdc45de85deca\",\"files\":{\"gistfile1.txt\":{\"filename\":\"gistfile1.txt\",\"type\":\"text/plain\",\"language\":\"Text\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/baf27dee82b1baef098bdc45de85deca/raw/a170b5a364e7cda059896972a15d8565b35e9514/gistfile1.txt\",\"size\":480}},\"public\":true,\"created_at\":\"2017-09-30T21:24:49Z\",\"updated_at\":\"2017-09-30T21:24:49Z\",\"description\":\"http://www.figure.fm/en/post/59002/PUTLOCKER+Watch+Judwaa+2+Online+Free+2017+Full+Video+HD.html\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/baf27dee82b1baef098bdc45de85deca/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/265e044402dbe77e04a07a30f3306946\",\"forks_url\":\"https://api.github.com/gists/265e044402dbe77e04a07a30f3306946/forks\",\"commits_url\":\"https://api.github.com/gists/265e044402dbe77e04a07a30f3306946/commits\",\"id\":\"265e044402dbe77e04a07a30f3306946\",\"git_pull_url\":\"https://gist.github.com/265e044402dbe77e04a07a30f3306946.git\",\"git_push_url\":\"https://gist.github.com/265e044402dbe77e04a07a30f3306946.git\",\"html_url\":\"https://gist.github.com/265e044402dbe77e04a07a30f3306946\",\"files\":{\"games.md\":{\"filename\":\"games.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/scalisi/265e044402dbe77e04a07a30f3306946/raw/c5075138b8d0ba3e91813072f06e07ee285eb99d/games.md\",\"size\":284}},\"public\":true,\"created_at\":\"2017-09-30T21:24:36Z\",\"updated_at\":\"2017-09-30T21:24:53Z\",\"description\":\"\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/265e044402dbe77e04a07a30f3306946/comments\",\"owner\":{\"login\":\"scalisi\",\"id\":163816,\"avatar_url\":\"https://avatars2.githubusercontent.com/u/163816?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/scalisi\",\"html_url\":\"https://github.com/scalisi\",\"followers_url\":\"https://api.github.com/users/scalisi/followers\",\"following_url\":\"https://api.github.com/users/scalisi/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/scalisi/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/scalisi/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/scalisi/subscriptions\",\"organizations_url\":\"https://api.github.com/users/scalisi/orgs\",\"repos_url\":\"https://api.github.com/users/scalisi/repos\",\"events_url\":\"https://api.github.com/users/scalisi/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/scalisi/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/4f0b0b52b98d1d353f04a8cf228346f7\",\"forks_url\":\"https://api.github.com/gists/4f0b0b52b98d1d353f04a8cf228346f7/forks\",\"commits_url\":\"https://api.github.com/gists/4f0b0b52b98d1d353f04a8cf228346f7/commits\",\"id\":\"4f0b0b52b98d1d353f04a8cf228346f7\",\"git_pull_url\":\"https://gist.github.com/4f0b0b52b98d1d353f04a8cf228346f7.git\",\"git_push_url\":\"https://gist.github.com/4f0b0b52b98d1d353f04a8cf228346f7.git\",\"html_url\":\"https://gist.github.com/4f0b0b52b98d1d353f04a8cf228346f7\",\"files\":{\"config.json\":{\"filename\":\"config.json\",\"type\":\"application/json\",\"language\":\"JSON\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/4f0b0b52b98d1d353f04a8cf228346f7/raw/c51cef7534b49c8013e6a68dbcb292dfb46754cd/config.json\",\"size\":17284}},\"public\":true,\"created_at\":\"2017-09-30T21:24:33Z\",\"updated_at\":\"2017-09-30T21:24:34Z\",\"description\":\"Bootstrap Customizer Config\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/4f0b0b52b98d1d353f04a8cf228346f7/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/20c4b4747168b0b1f887c7b137b08e90\",\"forks_url\":\"https://api.github.com/gists/20c4b4747168b0b1f887c7b137b08e90/forks\",\"commits_url\":\"https://api.github.com/gists/20c4b4747168b0b1f887c7b137b08e90/commits\",\"id\":\"20c4b4747168b0b1f887c7b137b08e90\",\"git_pull_url\":\"https://gist.github.com/20c4b4747168b0b1f887c7b137b08e90.git\",\"git_push_url\":\"https://gist.github.com/20c4b4747168b0b1f887c7b137b08e90.git\",\"html_url\":\"https://gist.github.com/20c4b4747168b0b1f887c7b137b08e90\",\"files\":{\"error\":{\"filename\":\"error\",\"type\":\"text/plain\",\"language\":null,\"raw_url\":\"https://gist.githubusercontent.com/anonymous/20c4b4747168b0b1f887c7b137b08e90/raw/f6768eb1810abef88af0faa6f6b70a5c76909e12/error\",\"size\":2031}},\"public\":true,\"created_at\":\"2017-09-30T21:24:16Z\",\"updated_at\":\"2017-09-30T21:24:16Z\",\"description\":null,\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/20c4b4747168b0b1f887c7b137b08e90/comments\",\"truncated\":false},{\"url\":\"https://api.github.com/gists/837bb974d2c971bf1713a87d5303db2a\",\"forks_url\":\"https://api.github.com/gists/837bb974d2c971bf1713a87d5303db2a/forks\",\"commits_url\":\"https://api.github.com/gists/837bb974d2c971bf1713a87d5303db2a/commits\",\"id\":\"837bb974d2c971bf1713a87d5303db2a\",\"git_pull_url\":\"https://gist.github.com/837bb974d2c971bf1713a87d5303db2a.git\",\"git_push_url\":\"https://gist.github.com/837bb974d2c971bf1713a87d5303db2a.git\",\"html_url\":\"https://gist.github.com/837bb974d2c971bf1713a87d5303db2a\",\"files\":{\"Порно Высокое Качество Русское Групповое.md\":{\"filename\":\"Порно Высокое Качество Русское Групповое.md\",\"type\":\"text/plain\",\"language\":\"Markdown\",\"raw_url\":\"https://gist.githubusercontent.com/anonymous/837bb974d2c971bf1713a87d5303db2a/raw/099a2f564fc775082a91b887ddc45be225bed9e6/%D0%9F%D0%BE%D1%80%D0%BD%D0%BE%20%D0%92%D1%8B%D1%81%D0%BE%D0%BA%D0%BE%D0%B5%20%D0%9A%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B5%20%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B5.md\",\"size\":9399}},\"public\":true,\"created_at\":\"2017-09-30T21:24:04Z\",\"updated_at\":\"2017-09-30T21:24:04Z\",\"description\":\"Порно Высокое Качество Русское Групповое\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/837bb974d2c971bf1713a87d5303db2a/comments\",\"truncated\":false}]"
+				}
+			]
+		},
+		{
+			"name": "2. Confirm Wolfordj has at least one public Gist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"Joaquin Saldana ",
+							"CS496 - REST API Usage ",
+							"*/ ",
+							"",
+							"function hasPublicGists(len)",
+							"{",
+							"    if (len > 0)",
+							"    {",
+							"        return true; ",
+							"    }",
+							"    ",
+							"    return false; ",
+							"}",
+							"",
+							"var responseLength = JSON.parse(responseBody).length; ",
+							"",
+							"tests[\"Wolfordj Has At Least One Public Gist\"] = hasPublicGists(responseLength)"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/users/wolfordj/gists",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Confirm that the user \"worlfordj\" has at least one public Gist \n\n"
+			},
+			"response": [
+				{
+					"id": "c14c046a-2b62-484e-9119-3b998e154f42",
+					"name": "https://api.github.com/users/wolfordj/gists",
+					"originalRequest": {
+						"url": "https://api.github.com/users/wolfordj/gists",
+						"method": "GET",
+						"header": [],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+							"name": "Access-Control-Expose-Headers",
+							"description": "Lets a server whitelist headers that browsers are allowed to access."
+						},
+						{
+							"key": "Cache-Control",
+							"value": "public, max-age=60, s-maxage=60",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'none'",
+							"name": "Content-Security-Policy",
+							"description": "Custom header"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 30 Sep 2017 21:26:55 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a209f6f56660bfb0c83a04f17829266\"",
+							"name": "ETag",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"key": "Link",
+							"value": "<https://api.github.com/gists/public?page=2>; rel=\"next\", <https://api.github.com/gists/public?page=100>; rel=\"last\"",
+							"name": "Link",
+							"description": "Used to express a typed relationship with another resource, where the relation type is defined by RFC 5988"
+						},
+						{
+							"key": "Server",
+							"value": "GitHub.com",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK",
+							"name": "Status",
+							"description": "Custom header"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains; preload",
+							"name": "Strict-Transport-Security",
+							"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Accept",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "deny",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-GitHub-Media-Type",
+							"value": "github.v3; format=json",
+							"name": "X-GitHub-Media-Type",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-GitHub-Request-Id",
+							"value": "DC7A:4528:1BCF494:381753E:59D00C1F",
+							"name": "X-GitHub-Request-Id",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60",
+							"name": "X-RateLimit-Limit",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57",
+							"name": "X-RateLimit-Remaining",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1506810003",
+							"name": "X-RateLimit-Reset",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-Runtime-rack",
+							"value": "0.173452",
+							"name": "X-Runtime-rack",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Mon Jan 18 2038 22:14:07 GMT-0500 (EST)",
+							"httpOnly": true,
+							"domain": "github.com",
+							"path": "/",
+							"secure": true,
+							"value": "eyJzZXNzaW9uX2lkIjoiYmY2NmY1MjIxNmY2YTAxNzRlYjllN2E5YmNkNTEwZGIiLCJsYXN0X3JlYWRfZnJvbV9yZXBsaWNhcyI6MTUwNjgwNjgwODU4MX0%3D--27a9ffa1b3941de40c53777e01540e9b7773fa06",
+							"key": "_gh_sess"
+						}
+					],
+					"responseTime": 294,
+					"body": "[{\"url\":\"https://api.github.com/gists/fbc284d566203e0e88f65779026fc41d\",\"forks_url\":\"https://api.github.com/gists/fbc284d566203e0e88f65779026fc41d/forks\",\"commits_url\":\"https://api.github.com/gists/fbc284d566203e0e88f65779026fc41d/commits\",\"id\":\"fbc284d566203e0e88f65779026fc41d\",\"git_pull_url\":\"https://gist.github.com/fbc284d566203e0e88f65779026fc41d.git\",\"git_push_url\":\"https://gist.github.com/fbc284d566203e0e88f65779026fc41d.git\",\"html_url\":\"https://gist.github.com/fbc284d566203e0e88f65779026fc41d\",\"files\":{\"gistfile1.txt\":{\"filename\":\"gistfile1.txt\",\"type\":\"text/plain\",\"language\":\"Text\",\"raw_url\":\"https://gist.githubusercontent.com/wolfordj/fbc284d566203e0e88f65779026fc41d/raw/59ed8fed30a26e54b80d1673f4ebeb7528c2da4d/gistfile1.txt\",\"size\":1416}},\"public\":true,\"created_at\":\"2017-05-24T23:48:18Z\",\"updated_at\":\"2017-05-24T23:49:30Z\",\"description\":\"Execution Plan\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/fbc284d566203e0e88f65779026fc41d/comments\",\"owner\":{\"login\":\"wolfordj\",\"id\":6644582,\"avatar_url\":\"https://avatars3.githubusercontent.com/u/6644582?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/wolfordj\",\"html_url\":\"https://github.com/wolfordj\",\"followers_url\":\"https://api.github.com/users/wolfordj/followers\",\"following_url\":\"https://api.github.com/users/wolfordj/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/wolfordj/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/wolfordj/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/wolfordj/subscriptions\",\"organizations_url\":\"https://api.github.com/users/wolfordj/orgs\",\"repos_url\":\"https://api.github.com/users/wolfordj/repos\",\"events_url\":\"https://api.github.com/users/wolfordj/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/wolfordj/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false},{\"url\":\"https://api.github.com/gists/0ae72ee5819d5364f48ce0fff1805307\",\"forks_url\":\"https://api.github.com/gists/0ae72ee5819d5364f48ce0fff1805307/forks\",\"commits_url\":\"https://api.github.com/gists/0ae72ee5819d5364f48ce0fff1805307/commits\",\"id\":\"0ae72ee5819d5364f48ce0fff1805307\",\"git_pull_url\":\"https://gist.github.com/0ae72ee5819d5364f48ce0fff1805307.git\",\"git_push_url\":\"https://gist.github.com/0ae72ee5819d5364f48ce0fff1805307.git\",\"html_url\":\"https://gist.github.com/0ae72ee5819d5364f48ce0fff1805307\",\"files\":{\"test_script.py\":{\"filename\":\"test_script.py\",\"type\":\"application/x-python\",\"language\":\"Python\",\"raw_url\":\"https://gist.githubusercontent.com/wolfordj/0ae72ee5819d5364f48ce0fff1805307/raw/0c03b86169f024d6be2d5d99dc794b68f21a69ac/test_script.py\",\"size\":3083}},\"public\":true,\"created_at\":\"2017-01-27T21:45:54Z\",\"updated_at\":\"2017-01-27T21:45:54Z\",\"description\":\"\",\"comments\":0,\"user\":null,\"comments_url\":\"https://api.github.com/gists/0ae72ee5819d5364f48ce0fff1805307/comments\",\"owner\":{\"login\":\"wolfordj\",\"id\":6644582,\"avatar_url\":\"https://avatars3.githubusercontent.com/u/6644582?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/wolfordj\",\"html_url\":\"https://github.com/wolfordj\",\"followers_url\":\"https://api.github.com/users/wolfordj/followers\",\"following_url\":\"https://api.github.com/users/wolfordj/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/wolfordj/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/wolfordj/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/wolfordj/subscriptions\",\"organizations_url\":\"https://api.github.com/users/wolfordj/orgs\",\"repos_url\":\"https://api.github.com/users/wolfordj/repos\",\"events_url\":\"https://api.github.com/users/wolfordj/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/wolfordj/received_events\",\"type\":\"User\",\"site_admin\":false},\"truncated\":false}]"
+				}
+			]
+		},
+		{
+			"name": "3. Get Number of Gists For User to Test Increment by 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var len = JSON.parse(responseBody).length; ",
+							"",
+							"// postman.setEnvironmentVariable(\"MyGistCount\", len); ",
+							"",
+							"postman.setGlobalVariable(\"MyGistCount\", len); ",
+							"",
+							"console.log(postman.getGlobalVariable(\"MyGistCount\")); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/users/saldanaj/gists",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Confirm that when you create a Gist the number of Gists associated to your account increases by 1 "
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create Gist to Test Increment by 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Succesfully Created a POST Request\"] = responseCode.code === 201 || responseCode.code === 202; ",
+							"",
+							"var newGistLink = postman.getResponseHeader(\"location\"); ",
+							"",
+							"postman.setGlobalVariable(\"Gist URL\", newGistLink); ",
+							"",
+							"console.log(postman.getGlobalVariable(\"Gist URL\")); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/gists",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"New Gist for CS496\",\n  \"public\": true,\n  \"files\": {\n    \"file1_JQ_CS496.txt\": {\n      \"content\": \"Hello Word From CS496 .... Gists Test\"\n    }\n  }\n}"
+				},
+				"description": "Confirm that when you create a Gist the number of Gists associated to your account increases by 1 "
+			},
+			"response": []
+		},
+		{
+			"name": "3. Confirm Gists Count Increased by 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var saldanajGists = JSON.parse(responseBody); ",
+							"",
+							"var newCount = saldanajGists.length; ",
+							"var before = parseInt(postman.getGlobalVariable(\"MyGistCount\"), 10); ",
+							"tests[\"New Saldanaj Gist Count Increased by 1\"] = newCount === (before + 1); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/users/saldanaj/gists",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get request confirming the total number of Gists increased by 1"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Check Gist Content ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Testing Created Gist Content\"] = responseBody.has(\"Hello Word From CS496 .... Gists Test\"); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Checking to see if the content i created matched what was actually saved "
+			},
+			"response": []
+		},
+		{
+			"name": "5. Edit the Contents of a Gist ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Gist Succesfully Updated w/ Response Code 200\"] = responseCode.code === 200; ",
+							"tests[\"Confirming Gist Content Matches\"] = responseBody.has(\"Hello World From CS496 ... this is an edit to the Gist\"); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"New Gist for CS496\",\n  \"public\": true,\n  \"files\": {\n    \"file1_JQ_CS496.txt\": {\n      \"content\": \"Hello World From CS496 ... this is an edit to the Gist\"\n    }\n  }\n}"
+				},
+				"description": "Confirm that I was able to edit the contents of a Gist already existing (requires editing it and proving the edits worked)"
+			},
+			"response": []
+		},
+		{
+			"name": "6. Add a star to Gist ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Star a Gist Successful w/ 204 Status Code\"] = responseCode.code === 204; "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}/star",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Confirm that you can add a star to a Gist "
+			},
+			"response": []
+		},
+		{
+			"name": "7. Confirm List of Starred Gists is Correct ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Request to List Starred List Successed w/ Status Code 200\"] = responseCode.code === 200; ",
+							"tests[\"Created Gist In Starred List\"] = responseBody.has(postman.getGlobalVariable(\"Gist URL\")); "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://api.github.com/gists/starred",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Checking that the list of starred gists is correct under my profile saldanaj"
+			},
+			"response": []
+		},
+		{
+			"name": "8. Confirm You Can Remove a Star ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successfully removed star w/ Status Code 204\"] = responseCode.code === 204; "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}/star",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Confirm that I can remove a star "
+			},
+			"response": []
+		},
+		{
+			"name": "8. Confirm Star Was Removed ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Star was removed and received status code 404 confirming\"] = responseCode.code === 404; "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}/star",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Confirm star was removed by revisiting the Gist URL and checking if we get a 404 response code "
+			},
+			"response": []
+		},
+		{
+			"name": "9. Delete a Gist ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Gist Deleted - Status Code = 204\"] = responseCode.code === 204; "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Confirm you can delete a Gist "
+			},
+			"response": []
+		},
+		{
+			"name": "9. Confirm Gist Was Deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Confirm Gist Deleted w/ Response Code 404\"] = responseCode.code === 404; ",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Gist URL}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2496a5a8cbff7748abe0f7d8ef50ca0bb114dd25",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get request onfirming Gist was deleted w/ response code 404 - not found "
+			},
+			"response": []
+		}
+	]
+}
